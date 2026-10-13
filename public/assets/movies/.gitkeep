@@ -1,0 +1,23 @@
+# Movie Assets Directory
+
+Place movie posters and stills here with the following structure:
+
+## Posters
+- movie1-poster-placeholder.jpg
+- movie2-poster-placeholder.jpg
+
+Recommended specifications:
+- Format: JPG or PNG
+- Size: At least 1000x1500px
+- Aspect ratio: 2:3 (portrait)
+- File size: Under 1MB
+
+## Stills/Gallery Images
+- movie1-still1-placeholder.jpg
+- movie1-still2-placeholder.jpg
+
+Recommended specifications:
+- Format: JPG or PNG
+- Size: At least 1920x1080px
+- Aspect ratio: 16:9 (landscape)
+- File size: Under 800KB

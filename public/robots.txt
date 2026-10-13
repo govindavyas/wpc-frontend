@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Block admin and private endpoints
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+
+# Explicitly allow AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Specify the sitemap location
+Sitemap: https://whitepandacreations.com/sitemap.xml

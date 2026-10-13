@@ -1,0 +1,17 @@
+# News Assets Directory
+
+Place news article images here with the following naming convention:
+- news1-placeholder.jpg
+- news2-placeholder.jpg
+- news3-placeholder.jpg
+- etc.
+
+Recommended specifications:
+- Format: JPG or PNG
+- Size: At least 1920x1080px
+- Aspect ratio: 16:9 (landscape)
+- File size: Under 500KB for optimal performance
+
+These images will be displayed in:
+- News cards on the main news section
+- Featured image in news detail modal

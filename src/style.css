@@ -1,0 +1,583 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for theming */
+:root {
+  /* Dark theme (default) */
+  --color-bg-primary: #060914;
+  --color-bg-secondary: #0a0e27;
+  --color-bg-card: #0a0e27;
+  --color-bg-card-hover: #0f1331;
+  --color-bg-input: #060914;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-dimmed: #64748b;
+  --color-border: #1e293b;
+  --color-border-light: #334155;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --color-gold: #fbbf24;
+  --color-gold-light: #fcd34d;
+  --color-overlay: rgba(0, 0, 0, 0.8);
+  --color-overlay-light: rgba(0, 0, 0, 0.5);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --gradient-from: #060914;
+  --gradient-to: #0a0e27;
+}
+
+.light-theme {
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #f1f5f9;
+  --color-bg-input: #f1f5f9;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-text-dimmed: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-border-light: #cbd5e1;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --color-gold: #d97706;
+  --color-gold-light: #f59e0b;
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-overlay-light: rgba(0, 0, 0, 0.3);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --gradient-from: #f8fafc;
+  --gradient-to: #e2e8f0;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased transition-colors duration-300;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    /* Improve text rendering */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+    color: var(--color-text-primary);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+  }
+
+  /* Skip to main content link */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Visible on focus for keyboard navigation */
+  .sr-only.focus\:not-sr-only:focus {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Improved focus states for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 px-6 md:px-12 lg:px-20;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply bg-panda-purple hover:bg-panda-purple-dark text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply font-semibold py-3 px-8 rounded-lg transition-all duration-300;
+    background-color: transparent;
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-gold);
+    color: var(--color-bg-primary);
+  }
+
+  .card {
+    @apply rounded-xl overflow-hidden transition-all duration-300 hover:transform hover:scale-[1.02];
+    background-color: var(--color-bg-card);
+    box-shadow: 0 10px 40px var(--shadow-color);
+    border: 1px solid var(--color-border);
+  }
+
+  .card:hover {
+    box-shadow: 0 20px 60px var(--shadow-color);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-panda-purple to-panda-gold bg-clip-text text-transparent;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text;
+  }
+
+  /* Theme-aware text colors */
+  .text-theme-primary {
+    color: var(--color-text-primary);
+  }
+
+  .text-theme-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .text-theme-muted {
+    color: var(--color-text-muted);
+  }
+
+  .text-theme-dimmed {
+    color: var(--color-text-dimmed);
+  }
+
+  /* Theme-aware backgrounds */
+  .bg-theme-primary {
+    background-color: var(--color-bg-primary);
+  }
+
+  .bg-theme-secondary {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .bg-theme-card {
+    background-color: var(--color-bg-card);
+  }
+
+  .bg-theme-input {
+    background-color: var(--color-bg-input);
+  }
+
+  /* Theme-aware borders */
+  .border-theme {
+    border-color: var(--color-border);
+  }
+
+  .border-theme-light {
+    border-color: var(--color-border-light);
+  }
+
+  /* Theme-aware gradients */
+  .bg-theme-gradient {
+    background: linear-gradient(to bottom, var(--gradient-from), var(--gradient-to));
+  }
+
+  .bg-theme-gradient-reverse {
+    background: linear-gradient(to bottom, var(--gradient-to), var(--gradient-from));
+  }
+
+  /* Form inputs theme aware */
+  input,
+  textarea,
+  select {
+    background-color: var(--color-bg-input);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-text-dimmed);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--color-accent);
+  }
+}
+
+/* Override specific hard-coded colors in light theme */
+/* Override bg-panda-dark and bg-panda-darker */
+.light-theme .bg-panda-dark,
+.light-theme .bg-panda-darker {
+  background-color: var(--color-bg-secondary) !important;
+}
+
+/* Override gradients */
+.light-theme .bg-gradient-to-b.from-panda-darker.to-panda-dark,
+.light-theme .bg-gradient-to-b.from-panda-dark.to-panda-darker,
+.light-theme .bg-gradient-to-b.from-panda-darker.via-panda-dark.to-panda-darker {
+  background: linear-gradient(to bottom, var(--gradient-from), var(--gradient-to)) !important;
+}
+
+/* Override text colors */
+.light-theme .text-white {
+  color: var(--color-text-primary) !important;
+}
+
+.light-theme .text-gray-300 {
+  color: var(--color-text-secondary) !important;
+}
+
+.light-theme .text-gray-400 {
+  color: var(--color-text-muted) !important;
+}
+
+.light-theme .text-gray-500 {
+  color: var(--color-text-dimmed) !important;
+}
+
+/* Override border colors */
+.light-theme .border-gray-700,
+.light-theme .border-gray-800 {
+  border-color: var(--color-border) !important;
+}
+
+/* Override Navbar scrolled state */
+.light-theme .bg-panda-darker\/95 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Override dropdown backgrounds */
+.light-theme .bg-panda-dark.border.border-panda-purple\/30 {
+  background-color: var(--color-bg-card) !important;
+}
+
+/* Override card backgrounds in specific sections */
+.light-theme .bg-panda-dark\/50,
+.light-theme .bg-panda-darker\/50 {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+}
+
+/* Override modal backgrounds */
+.light-theme .bg-black\/80 {
+  background-color: var(--color-overlay) !important;
+}
+
+/* Override footer */
+.light-theme footer.bg-panda-darker {
+  background-color: var(--color-bg-secondary) !important;
+}
+
+/* Fix gradient overlays for poster/images */
+.light-theme .bg-gradient-to-t.from-panda-darker,
+.light-theme .bg-gradient-to-t.from-panda-dark {
+  background: linear-gradient(to top, var(--color-bg-secondary), transparent) !important;
+}
+
+/* Navbar links in light theme */
+.light-theme nav .text-gray-300 {
+  color: var(--color-text-secondary) !important;
+}
+
+.light-theme nav .text-gray-300:hover {
+  color: var(--color-gold) !important;
+}
+
+/* Mobile menu in light theme */
+.light-theme .md\:hidden.bg-panda-dark {
+  background-color: var(--color-bg-card) !important;
+}
+
+/* Input fields */
+.light-theme .bg-panda-darker.border.border-gray-700 {
+  background-color: var(--color-bg-input) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* Purple accent backgrounds - lighter version */
+.light-theme .bg-panda-purple\/20,
+.light-theme .bg-panda-purple\/30 {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Tags and badges background */
+.light-theme .bg-panda-darker.text-gray-400 {
+  background-color: var(--color-bg-input) !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* Filter buttons background */
+.light-theme .bg-panda-dark.text-gray-400 {
+  background-color: var(--color-bg-input) !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* Scrollbar styling for light theme */
+.light-theme .custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+.light-theme .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+}
+
+/* Category filter sticky bar */
+.light-theme .bg-panda-darker\/95.backdrop-blur-sm {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ===========================================
+   MICROINTERACTIONS & ANIMATIONS
+   Enhanced UI/UX with smooth interactions
+   =========================================== */
+
+/* Animation Timing Variables */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 800ms;
+}
+
+/* Button Microinteractions */
+@layer components {
+  .btn-interactive {
+    @apply relative overflow-hidden;
+    transition: transform var(--duration-normal) var(--ease-spring),
+      box-shadow var(--duration-normal) ease;
+  }
+
+  .btn-interactive:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-interactive:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn-interactive::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    transform: translateX(-100%);
+    transition: transform var(--duration-slow) ease;
+  }
+
+  .btn-interactive:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Glow Effect */
+  .btn-glow {
+    @apply relative;
+    transition: box-shadow var(--duration-normal) ease;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5),
+      0 0 40px rgba(99, 102, 241, 0.3),
+      0 0 60px rgba(99, 102, 241, 0.1);
+  }
+
+  /* Enhanced Primary Button */
+  .btn-primary {
+    @apply btn-interactive btn-glow;
+  }
+
+  /* Underline Hover Effect */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #fbbf24);
+    transition: width var(--duration-normal) var(--ease-out-expo);
+  }
+
+  .link-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Stagger Animation Helper Classes */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .stagger-item.animate {
+    animation: stagger-reveal 0.6s var(--ease-out-expo) forwards;
+  }
+
+  @keyframes stagger-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    @apply relative overflow-hidden;
+    background: linear-gradient(90deg,
+        var(--color-bg-input) 25%,
+        var(--color-bg-card) 50%,
+        var(--color-bg-input) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Glass Effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .light-theme .glass {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Focus Ring */
+  .focus-ring:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  }
+
+  /* Scroll Progress Bar */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-1 z-50;
+    background: linear-gradient(90deg, #6366f1, #fbbf24);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+
+  /* Smooth Scroll Behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Selection Styling */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: inherit;
+}
+
+/* Custom Focus Styles */
+*:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Hide default focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
